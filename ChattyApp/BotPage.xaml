@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ChattyApp"
+             x:Class="ChattyApp.BotPage"
+             Title="Support chat">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Content area -->
+            <RowDefinition Height="Auto" />
+            <!-- Pinned element -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Your other content (e.g., labels, buttons, etc.) -->
+        <!-- Add them in the first row (Grid.Row="0") -->
+        <ScrollView Grid.Row="0" 
+                    Grid.ColumnSpan="2"
+                    x:Name="messageScrollView"
+                    Margin="5">
+            <VerticalStackLayout x:Name="chatwindow"
+                                 Spacing="10" />
+
+        </ScrollView>
+
+        <!-- Pinned element (e.g., a button) -->
+        <Entry x:Name="chatentry"
+               Placeholder="How can I help you?"
+               Completed="OnChatEntryCompleted"
+               HorizontalOptions="Fill"
+               VerticalOptions="End"
+               Grid.Row="1"
+               Grid.Column="0"/>
+
+        <Button x:Name="sendbtn"
+                Text="Send"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                Clicked="OnChatEntryCompleted"
+                BackgroundColor="DarkBlue"
+                TextColor="White"/>
+    </Grid>
+</ContentPage>
