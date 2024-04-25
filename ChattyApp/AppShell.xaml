@@ -7,9 +7,21 @@
     Shell.FlyoutBehavior="Disabled"
     Title="ChattyApp">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:BotPage}"
-        Route="BotPage" />
+    <TabBar>
 
+        <Tab Title="Control">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:BotControlPage}"
+                Route="BotControlPage" />
+        </Tab>
+
+        <Tab Title="Help">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:BotPage}"
+                Route="BotPage" />
+        </Tab>
+    </TabBar>
+    
 </Shell>

@@ -7,9 +7,7 @@
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <!-- Content area -->
             <RowDefinition Height="Auto" />
-            <!-- Pinned element -->
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -17,8 +15,6 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- Your other content (e.g., labels, buttons, etc.) -->
-        <!-- Add them in the first row (Grid.Row="0") -->
         <ScrollView Grid.Row="0" 
                     Grid.ColumnSpan="2"
                     x:Name="messageScrollView"
@@ -28,7 +24,6 @@
 
         </ScrollView>
 
-        <!-- Pinned element (e.g., a button) -->
         <Entry x:Name="chatentry"
                Placeholder="How can I help you?"
                Completed="OnChatEntryCompleted"

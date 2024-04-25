@@ -28,6 +28,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = ChattyApp.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
+[D:/source/ChattyApp/ChattyApp/BotControlPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ChattyApp.BotControlPage.xaml
+build_metadata.AdditionalFiles.TargetPath = BotControlPage.xaml
+build_metadata.AdditionalFiles.RelativePath = BotControlPage.xaml
+
 [D:/source/ChattyApp/ChattyApp/BotPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ChattyApp.BotPage.xaml

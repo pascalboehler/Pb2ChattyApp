@@ -11,15 +11,23 @@ public partial class BotPage : ContentPage
 
 	public BotPage()
 	{
-		InitializeComponent();
-		InitializeWebSocket();
+        InitializeComponent();
 	}
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        InitializeWebSocket();
+    }
     protected override async void OnDisappearing()
     {
         base.OnDisappearing();
 
-        await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+        if (ws.State != WebSocketState.Closed)
+        {
+            await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+        }
     }
 
     private void OnChatEntryCompleted(object sender, EventArgs e)
@@ -52,12 +60,10 @@ public partial class BotPage : ContentPage
 	{
 		try
 		{
-            // TODO: Dont panic
             Trace.WriteLine("Attempting connection");
             await ws.ConnectAsync(new Uri("wss://api.bot.demo.pinguin-it.de/chat"), CancellationToken.None);
             Trace.WriteLine("Connected to socket");
             isConnected = true;
-            //SendToWebSocket("Hello");
 
             AddBotMessageToScrollView("Hi, wie kann ich Ihnen helfen?");
 
@@ -84,9 +90,10 @@ public partial class BotPage : ContentPage
             });
 
             await receiveTask;
-        } catch
+        } catch(Exception ex)
         {
-            AddBotMessageToScrollView("Hi, momentan kann ich mich leider nicht mit zuhause verbinden. Bitte versuche es nachher erneut");
+            Trace.WriteLine(ex.ToString());
+            AddBotMessageToScrollView("Hi, momentan kann ich mich leider nicht mit zuhause verbinden. Bitte versuchen Sie es bitte nachher erneut");
         }
 		
 	}
@@ -103,12 +110,12 @@ public partial class BotPage : ContentPage
 		if (isBot)
 		{
 			frame.HorizontalOptions = LayoutOptions.Start;
-            frame.BackgroundColor = Colors.DarkBlue;
+            frame.BackgroundColor = Colors.Blue;
         }
 		else
 		{
 			frame.HorizontalOptions = LayoutOptions.End;
-            frame.BackgroundColor = Colors.DarkViolet;
+            frame.BackgroundColor = Colors.DarkBlue;
         }
 
 		label.VerticalOptions = LayoutOptions.Center;
@@ -122,8 +129,14 @@ public partial class BotPage : ContentPage
 
 	private async void SendToWebSocket(string message)
 	{
-		var bytes = Encoding.UTF8.GetBytes(message.Replace(" ", ""));
-		var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
-		await ws.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+        if (ws.State == WebSocketState.Open)
+        {
+            var bytes = Encoding.UTF8.GetBytes(message.Replace(" ", ""));
+            var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
+            await ws.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+        } else
+        {
+            AddBotMessageToScrollView("Hi, momentan kann ich mich leider nicht mit zuhause verbinden. Bitte versuchen Sie es bitte nachher erneut");
+        }
 	}
 }
