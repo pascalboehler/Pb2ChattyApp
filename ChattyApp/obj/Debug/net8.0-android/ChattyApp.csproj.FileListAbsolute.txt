@@ -1039,3 +1039,4 @@ D:\source\ChattyApp\ChattyApp\obj\Debug\net8.0-android\stamp\_GenerateJavaStubs.
 D:\source\ChattyApp\ChattyApp\obj\Debug\net8.0-android\stamp\_GeneratePackageManagerJava.stamp
 D:\source\ChattyApp\ChattyApp\obj\Debug\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
 D:\source\ChattyApp\ChattyApp\obj\Debug\net8.0-android\ChattyApp.sourcelink.json
+D:\source\ChattyApp\ChattyApp\obj\Debug\net8.0-android\resizetizer\r\drawable\bugbot.jpeg

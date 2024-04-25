@@ -5,7 +5,7 @@
              Title="BotControlPage">
     <VerticalStackLayout>
 
-        <Image Source="dotnet_bot.png"/>
+        <Image Source="bugbot.jpeg"/>
 
         <Label 
             Text="Control your bot here in the future!"
